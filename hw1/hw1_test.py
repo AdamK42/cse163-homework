@@ -45,9 +45,71 @@ def test_funky_sum():
     assert_equals(1.99, hw1.funky_sum(1, 2, 0.99))
 
 
+def test_count_divisible_digits():
+    """
+    Tests the function count_divisible_digits
+    """
+    print('Testing count_divisible_digits')
+
+    # Spec tests
+    assert_equals(4, hw1.count_divisible_digits(650899, 3))
+    assert_equals(1, hw1.count_divisible_digits(-204, 5))
+    assert_equals(0, hw1.count_divisible_digits(24, 5))
+    assert_equals(0, hw1.count_divisible_digits(1, 0))
+
+    # Edge cases
+    assert_equals(0, hw1.count_divisible_digits(42, 42))
+    assert_equals(1, hw1.count_divisible_digits(0, 1))
+
+    print('count_divisible_digits OK')
+
+
+def test_is_relatively_prime():
+    """
+    Tests the function is_relatively_prime
+    """
+
+
+def test_travel():
+    """
+    Tests the function travel
+    """
+
+
+def test_swip_swap():
+    """
+    Tests the function swip_swap
+    """
+
+
+def test_compress():
+    """
+    Tests the function compress
+    """
+
+
+def test_longest_line_length():
+    """
+    Tests the function longest_line_length
+    """
+
+
+def test_longest_word():
+    """
+    Tests the function longest_word
+    """
+
+
+def test_mode_digit():
+    """
+    Tests the function mode_digit
+    """
+
+
 def main():
     test_funky_sum()
     # Make sure you add the calls to all of your other functions here!
+    test_count_divisible_digits()
 
 
 if __name__ == '__main__':
