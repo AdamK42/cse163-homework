@@ -19,12 +19,18 @@ def count_divisible_digits(n, m):
     Takes two integers n and m, and returns the number of digits in n that
     are divisible by m.
     """
-    # Check m to make sure we can divide with it
+
+    # Edge cases
     if m == 0:
-        # In spec
+        # Can't divide by m, spec states this should be 0
         return 0
 
-    n = abs(n)
+    if n == 0:
+        # Can't loop through n, 0 is divisible by all m
+        return 1
+
+    # Bulk of cases
+    n = abs(n)  # weird rounding happens if n is not positive
     result = 0
 
     while n > 0:
