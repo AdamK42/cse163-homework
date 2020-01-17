@@ -80,24 +80,57 @@ def test_swip_swap():
     """
     Tests the function swip_swap
     """
+    print('Testing swip_swap')
+
+    # Spec tests
+    assert_equals('offbar', hw1.swip_swap('foobar', 'f', 'o'))
+    assert_equals('foocar', hw1.swip_swap('foobar', 'b', 'c'))
+    assert_equals('foobar', hw1.swip_swap('foobar', 'z', 'c'))
+
+    # Edge cases
+    assert_equals('', hw1.swip_swap('', 'b', 'c'))
+    assert_equals('foo ar', hw1.swip_swap('foobar', 'b', ' '))
+
+    print('swip_swap OK')
 
 
 def test_compress():
     """
     Tests the function compress
     """
+    print('Testing compress')
 
 
 def test_longest_line_length():
     """
     Tests the function longest_line_length
     """
+    print('Testing longest_line_length')
+
+    # Spec test
+    assert_equals(13, hw1.longest_line_length('poem.txt'))
+
+    # Edge cases
+    assert_equals(None, hw1.longest_line_length('empty.txt'))
+    assert_equals(11, hw1.longest_line_length('spaces.txt'))
+
+    print('longest_line_length OK')
 
 
 def test_longest_word():
     """
     Tests the function longest_word
     """
+    print('Testing longest_word')
+
+    # Spec test
+    assert_equals('3: shells', hw1.longest_word('poem.txt'))
+
+    # Edge cases
+    assert_equals(None, hw1.longest_word('empty.txt'))
+    assert_equals(None, hw1.longest_word('spaces.txt'))
+
+    print('longest_word OK')
 
 
 def test_mode_digit():
@@ -110,6 +143,9 @@ def main():
     test_funky_sum()
     # Make sure you add the calls to all of your other functions here!
     test_count_divisible_digits()
+    test_is_relatively_prime()
+    test_swip_swap()
+    test_longest_word()
 
 
 if __name__ == '__main__':

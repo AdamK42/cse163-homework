@@ -69,7 +69,15 @@ def swip_swap(source, c1, c2):
     Takes a source string and 2 characters c1 and c2, and returns a string
     with all instances of c1 into c2 and c2 into c1.
     """
-    result = source
+    result = ""
+
+    for char in source:
+        if char == c1:
+            result += c2
+        elif char == c2:
+            result += c1
+        else:
+            result += char
 
     return result
 
@@ -98,10 +106,29 @@ def longest_word(file_name):
     Takes a file name and returns the longest word in the with which line it
     appears on.
     """
-    word = ''
-    line = 1
+    line_num = 0
+    longest_num = 0
+    longest_word = None
 
-    return str(line) + ': ' + word
+    with open(file_name) as file:
+        lines = file.readlines()
+        for line in lines:
+            # Track current line number
+            line_num += 1
+            words = line.split()
+            for word in words:
+                # Check that we can compare length
+                if (word is not None) and \
+                        ((longest_word is None) or
+                            (len(word) > len(longest_word))):
+                    longest_word = word
+                    longest_num = line_num
+
+    if longest_word is None:
+        # File was empty
+        return None
+
+    return str(longest_num) + ': ' + longest_word
 
 
 def mode_digit(n):
