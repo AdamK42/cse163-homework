@@ -61,8 +61,6 @@ def test_count_divisible_digits():
     assert_equals(0, hw1.count_divisible_digits(42, 42))
     assert_equals(1, hw1.count_divisible_digits(0, 1))
 
-    print('count_divisible_digits OK')
-
 
 def test_is_relatively_prime():
     """
@@ -78,14 +76,22 @@ def test_is_relatively_prime():
     assert_equals(True, hw1.is_relatively_prime(8, 1))
 
     # Edge cases
-
-    print('is_relatively_prime OK')
+    assert_equals(True, hw1.is_relatively_prime(1, 1))
+    assert_equals(False, hw1.is_relatively_prime(42, 42))
 
 
 def test_travel():
     """
     Tests the function travel
     """
+    print('Testing travel')
+
+    # Spec tests
+    assert_equals('(-1, 4)', hw1.travel('NW!ewnW', 1, 2))
+
+    # Edge cases
+    assert_equals('(1, -2)', hw1.travel('NorthSouthEastWest', 0, 0))
+    assert_equals('(0, 0)', hw1.travel('', 0, 0))
 
 
 def test_swip_swap():
@@ -103,14 +109,22 @@ def test_swip_swap():
     assert_equals('', hw1.swip_swap('', 'b', 'c'))
     assert_equals('foo ar', hw1.swip_swap('foobar', 'b', ' '))
 
-    print('swip_swap OK')
-
 
 def test_compress():
     """
     Tests the function compress
     """
     print('Testing compress')
+
+    # Spec tests
+    assert_equals('c1o17l1k1a1n1g1a1r1o2',
+                  hw1.compress('cooooooooooooooooolkangaroo'))
+    assert_equals('a3', hw1.compress('aaa'))
+    assert_equals('', hw1.compress(''))
+
+    # Edge cases
+    assert_equals('a1A3a1', hw1.compress('aAAAa'))
+    assert_equals('T1h1e1B1e2M1o1v1i1e1', hw1.compress('TheBeeMovie'))
 
 
 def test_longest_line_length():
@@ -126,8 +140,6 @@ def test_longest_line_length():
     assert_equals(None, hw1.longest_line_length('empty.txt'))
     assert_equals(11, hw1.longest_line_length('spaces.txt'))
 
-    print('longest_line_length OK')
-
 
 def test_longest_word():
     """
@@ -142,13 +154,22 @@ def test_longest_word():
     assert_equals(None, hw1.longest_word('empty.txt'))
     assert_equals(None, hw1.longest_word('spaces.txt'))
 
-    print('longest_word OK')
-
 
 def test_mode_digit():
     """
     Tests the function mode_digit
     """
+    print('Testing mode_digit')
+
+    # Spec tests
+    assert_equals(1, hw1.mode_digit(12121))
+    assert_equals(0, hw1.mode_digit(0))
+    assert_equals(2, hw1.mode_digit(-122))
+    assert_equals(2, hw1.mode_digit(1211232231))
+
+    # Edge cases
+    assert_equals(4, hw1.mode_digit(444222))
+    assert_equals(9, hw1.mode_digit(8675309))
 
 
 def main():
@@ -156,6 +177,13 @@ def main():
     # Make sure you add the calls to all of your other functions here!
     test_count_divisible_digits()
     test_is_relatively_prime()
+    test_travel()
+    test_swip_swap()
+    test_compress()
+    test_longest_line_length()
+    test_longest_word()
+    test_mode_digit()
+
 
 if __name__ == '__main__':
     main()

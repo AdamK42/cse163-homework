@@ -24,7 +24,6 @@ def count_divisible_digits(n, m):
     if m == 0:
         # Can't divide by m, spec states this should be 0
         return 0
-
     if n == 0:
         # Can't loop through n, 0 is divisible by all m
         return 1
@@ -70,9 +69,20 @@ def travel(directions, x, y):
     and starting coordinates x and y, and returns the new coordinates in the
     form (x_new, y_new).
     """
-    result = [x, y]
+    directions = directions.lower()
+    for dir in directions:
+        if dir == 'n':
+            y += 1
+        elif dir == 's':
+            y -= 1
+        elif dir == 'e':
+            x += 1
+        elif dir == 'w':
+            x -= 1
 
-    return result
+        # not a valid direction, ignore
+
+    return '(' + str(x) + ', ' + str(y) + ')'
 
 
 def swip_swap(source, c1, c2):
@@ -98,7 +108,27 @@ def compress(source):
     Takes a source string and returns a string with each character followed
     by its count instead of the duplicate characters.
     """
-    result = source
+    result = ''
+    current_char = None
+    tally = 1
+
+    for char in source:
+        if current_char is None:
+            # Starting case
+            current_char = char
+        elif current_char != char:
+            # Add the last character and tally
+            result += current_char + str(tally)
+            # Reset
+            current_char = char
+            tally = 1
+        else:
+            # the current character for compression is shown again
+            tally += 1
+
+    # Add the last character and tally if they exist
+    if current_char is not None:
+        result += current_char + str(tally)
 
     return result
 
@@ -107,9 +137,16 @@ def longest_line_length(file_name):
     """
     Takes a file name and returns the length of the longest line in the file.
     """
-    length = 0
+    longest_line = None
 
-    return length
+    with open(file_name) as file:
+        lines = file.readlines()
+        for line in lines:
+            if line is not None and \
+                    (longest_line is None) or (len(line) > longest_line):
+
+                longest_line = len(line)
+    return longest_line
 
 
 def longest_word(file_name):
@@ -146,5 +183,25 @@ def mode_digit(n):
     """
     Takes an integer n and returns the digit that appears most frequently.
     """
+    # Edge case for n = 0
+    if n == 0:
+        return 0  # First if statement
 
-    return 0
+    n = abs(n)
+    tally = [0] * 10  # Super nifty notation!
+
+    while n > 0:
+        digit = n % 10
+        tally[digit] += 1
+        n = n // 10  # cut off last digit
+
+    mode = -1
+    max_count = 0
+
+    for digit in range(10):
+        if max_count < tally[digit] or \
+                (max_count <= tally[digit] and digit > mode):  # Second if
+            max_count = tally[digit]
+            mode = digit
+
+    return mode
