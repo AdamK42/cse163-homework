@@ -29,7 +29,7 @@ def count_divisible_digits(n, m):
         # Can't loop through n, 0 is divisible by all m
         return 1
 
-    # Bulk of cases
+    # The bulk of cases
     n = abs(n)  # weird rounding happens if n is not positive
     result = 0
 
@@ -50,7 +50,18 @@ def is_relatively_prime(n, m):
     Returns true if the only common factors of inputs n and m is 1, false
     if there are any other common factors.
     """
-    return False
+    # 1 is a trivial factor, so we will not think about it
+    n_factors = [i for i in range(2, n + 1) if n % i == 0]
+    m_factors = [i for i in range(2, m + 1) if m % i == 0]
+
+    # Start with assumption they are relatively prime
+    result = True
+    for factor in n_factors:
+        if factor in m_factors:
+            # They have a non-trivial common factor
+            result = False
+
+    return result
 
 
 def travel(directions, x, y):
