@@ -68,6 +68,18 @@ def test_is_relatively_prime():
     """
     Tests the function is_relatively_prime
     """
+    print('Testing is_relatively_prime')
+
+    # Spec tests
+    assert_equals(True, hw1.is_relatively_prime(12, 13))
+    assert_equals(False, hw1.is_relatively_prime(4, 24))
+    assert_equals(True, hw1.is_relatively_prime(5, 9))
+    assert_equals(True, hw1.is_relatively_prime(8, 9))
+    assert_equals(True, hw1.is_relatively_prime(8, 1))
+
+    # Edge cases
+
+    print('is_relatively_prime OK')
 
 
 def test_travel():
@@ -110,6 +122,7 @@ def main():
     test_funky_sum()
     # Make sure you add the calls to all of your other functions here!
     test_count_divisible_digits()
+    test_is_relatively_prime()
 
 
 if __name__ == '__main__':
