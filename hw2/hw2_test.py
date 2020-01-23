@@ -18,10 +18,15 @@ def test_manual_species_count():
     '''
 
     test_data = parse('pokemon_test.csv')
+    box_data = parse('pokemon_box.csv')
     print('Testing species_count')
 
     # Spec test
     assert_equals(3, hw2_manual.species_count(test_data))
+
+    # My test
+    # This took a while...
+    assert_equals(82, hw2_manual.species_count(box_data))
 
 
 def test_manual_max_level():
@@ -30,10 +35,14 @@ def test_manual_max_level():
     '''
 
     test_data = parse('pokemon_test.csv')
+    box_data = parse('pokemon_box.csv')
     print('Testing max_level')
 
     # Spec test
     assert_equals(('Lapras', 72), hw2_manual.max_level(test_data))
+
+    # My test
+    assert_equals(('Victreebel', 100), hw2_manual.max_level(box_data))
 
 
 def test_manual_filter_range():
@@ -46,7 +55,14 @@ def test_manual_filter_range():
 
     # Spec test
     expected = ['Arcanine', 'Arcanine', 'Starmie']
-    received = hw2_manual.filer_range(test_data, 30, 70)
+    received = hw2_manual.filter_range(test_data, 30, 70)
+
+    assert_equals(expected, received)
+
+    # My test
+    expected = []
+    received = hw2_manual.filter_range(test_data, 36, 67)
+
     assert_equals(expected, received)
 
 
@@ -61,6 +77,9 @@ def test_manual_mean_attack_for_type():
     # Spec test
     assert_equals(47.5, hw2_manual.mean_attack_for_type(test_data, 'fire'))
 
+    # My test
+    assert_equals(None, hw2_manual.mean_attack_for_type(test_data, 'fairy'))
+
 
 def test_manual_count_types():
     '''
@@ -73,6 +92,7 @@ def test_manual_count_types():
     # Spec test
     expected = {'water': 2, 'fire': 2}
     received = hw2_manual.count_types(test_data)
+
     assert_equals(expected, received)
 
 
@@ -102,23 +122,6 @@ def test_manual_mean_attack_per_type():
     expected = {'water': 140.5, 'fire': 47.5}
     received = hw2_manual.mean_attack_per_type(test_data)
     assert_equals(expected, received)
-
-
-def test_manual():
-    '''
-    This function groups all the manual implementation functions.
-    '''
-
-    print('Testing manual implementations.')
-    # Tests
-
-    # test_manual_species_count()
-    # test_manual_max_level()
-    # test_manual_filter_range()
-    # test_manual_mean_attack_for_type()
-    # test_manual_count_types()
-    # test_manual_highest_stage_per_type()
-    # test_manual_mean_attack_per_type()
 
 
 def test_pandas_species_count():
@@ -213,13 +216,23 @@ def test_pandas_mean_attack_per_type():
     assert_equals(expected, received)
 
 
-def test_pandas():
+def main():
     '''
-    This function groups all the pandas implementation functions.
+    This function runs all the tests in the file.
     '''
 
+    print('Testing manual implementations.')
+
+    test_manual_species_count()
+    test_manual_max_level()
+    test_manual_filter_range()
+    test_manual_mean_attack_for_type()
+    test_manual_count_types()
+    # test_manual_highest_stage_per_type()
+    # test_manual_mean_attack_per_type()
+
     print('Testing pandas implementations.')
-    # Tests
+
     # test_pandas_species_count()
     # test_pandas_max_level()
     # test_pandas_filter_range()
@@ -227,11 +240,6 @@ def test_pandas():
     # test_pandas_count_types()
     # test_pandas_highest_stage_per_type()
     # test_pandas_mean_attack_per_type()
-
-
-def main():
-    test_manual()
-    test_pandas()
 
 
 if __name__ == '__main__':
