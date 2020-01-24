@@ -1,0 +1,7 @@
+id,name,level,personality,type,weakness,atk,def,hp,stage
+59,Arcanine,35,impish,fire,water,50,55,90,2
+59,Arcanine,35,gentle,fire,water,45,60,80,2
+121,Starmie,67,sassy,water,electric,174,56,113,2
+131,Lapras,72,lax,water,electric,107,113,29,1
+857,Hattrem,36,gentle,pyschic,dark,40,73,57,2
+000,MissingNo.,-1,blank,normal,flying,0,0,0,0
