@@ -1,4 +1,10 @@
+# Name: Adam Klingler
+# Section: AB
+# Description: This program contains functions for manipulating pokemon data
+# in various ways using pandas dataframe and series features.
+
 # Write your functions here!
+import math
 
 
 def species_count(data):
@@ -7,7 +13,7 @@ def species_count(data):
     the number of unique names found in the 'name' column.
     '''
 
-    return 0
+    return len(data['name'].unique())
 
 
 def max_level(data):
@@ -18,9 +24,12 @@ def max_level(data):
 
     (name, level)
     '''
-    big_boi = (None, 0)
+    # Find the index of the highest level
+    max_index = data['level'].idxmax()
 
-    return big_boi
+    max_name = data.loc[max_index, 'name']
+    max_level = data.loc[max_index, 'level']
+    return (max_name, max_level)
 
 
 def filter_range(data, low, high):
@@ -30,19 +39,32 @@ def filter_range(data, low, high):
     returns a list of pokemon names that have the level within those
     boundaries.
     '''
-    result = list()
+    # masking
+    is_between = (data['level'] >= low) & (data['level'] < high)
 
-    return result
+    panda_names = data[is_between]['name']
+
+    # panda_names is still a series, need python lists
+    return list(panda_names)
 
 
-def mean_attack_for_type(data, type):
+def mean_attack_for_type(data, p_type):
     '''
-    This function takes in a pandas dataframe data and string type
+    This function takes in a pandas dataframe data and a pokemon type
     and returns the mean attack for the pokemon that are that type.
     '''
-    mean_attack = None
+    # Mask the types
+    is_type = data['type'] == p_type
 
-    return mean_attack
+    mean_attack = data[is_type]['atk'].mean()
+
+    # Check for NaN
+    if math.isnan(mean_attack):
+        # No attack, return None as per spec
+        return None
+    else:
+        # Valid value, return mean
+        return mean_attack
 
 
 def count_types(data):
@@ -51,9 +73,12 @@ def count_types(data):
     with the keys being types and the value being the number of pokemon in data
     with that type.
     '''
-    counts = dict()
+    # We want to count the number of pokemon per type
+    # I am using names because I know strings will behave how I want
+    counts = data.groupby('type')['name'].count()
 
-    return counts
+    # Counts is a series, want a dictionary
+    return dict(counts)
 
 
 def highest_stage_per_type(data):
@@ -62,9 +87,11 @@ def highest_stage_per_type(data):
     with the keys being types and the values being the highest value of stage
     for that type.
     '''
-    highest_stage = dict()
+    # We want max stage per type
+    highest_stage = data.groupby('type')['stage'].max()
 
-    return highest_stage
+    # highest_stage is a series, want a dictionary
+    return dict(highest_stage)
 
 
 def mean_attack_per_type(data):
@@ -73,6 +100,8 @@ def mean_attack_per_type(data):
     with the keys being types and the values being the average attack for that
     type.
     '''
-    mean_attack = dict()
+    # We want mean attack per type
+    mean_attack = data.groupby('type')['atk'].mean()
 
-    return mean_attack
+    # mean_attack is a series, want a dictionary
+    return dict(mean_attack)

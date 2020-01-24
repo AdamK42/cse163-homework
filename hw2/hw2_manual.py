@@ -1,3 +1,8 @@
+# Name: Adam Klingler
+# Section: AB
+# Description: This program contains functions for manipulating pokemon data
+# in various ways using manual loop algorithms.
+
 # Write your solutions here!
 
 
