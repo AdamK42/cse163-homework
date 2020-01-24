@@ -95,6 +95,14 @@ def test_manual_count_types():
 
     assert_equals(expected, received)
 
+    # My test
+    my_data = parse('my_pokemon.csv')
+
+    expected = {'water': 2, 'fire': 2, 'pyschic': 1, 'normal': 1}
+    received = hw2_manual.count_types(my_data)
+
+    assert_equals(expected, received)
+
 
 def test_manual_highest_stage_per_type():
     '''
@@ -107,6 +115,15 @@ def test_manual_highest_stage_per_type():
     # Spec test
     expected = {'water': 2, 'fire': 2}
     received = hw2_manual.highest_stage_per_type(test_data)
+
+    assert_equals(expected, received)
+
+    # My test
+    my_data = parse('my_pokemon.csv')
+
+    expected = {'water': 2, 'fire': 2, 'pyschic': 2, 'normal': 0}
+    received = hw2_manual.highest_stage_per_type(my_data)
+
     assert_equals(expected, received)
 
 
@@ -121,6 +138,15 @@ def test_manual_mean_attack_per_type():
     # Spec test
     expected = {'water': 140.5, 'fire': 47.5}
     received = hw2_manual.mean_attack_per_type(test_data)
+
+    assert_equals(expected, received)
+
+    # My test
+    my_data = parse('my_pokemon.csv')
+
+    expected = {'water': 140.5, 'fire': 47.5, 'pyschic': 40, 'normal': 0}
+    received = hw2_manual.mean_attack_per_type(my_data)
+
     assert_equals(expected, received)
 
 
@@ -228,8 +254,8 @@ def main():
     test_manual_filter_range()
     test_manual_mean_attack_for_type()
     test_manual_count_types()
-    # test_manual_highest_stage_per_type()
-    # test_manual_mean_attack_per_type()
+    test_manual_highest_stage_per_type()
+    test_manual_mean_attack_per_type()
 
     print('Testing pandas implementations.')
 

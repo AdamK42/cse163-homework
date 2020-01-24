@@ -114,6 +114,18 @@ def highest_stage_per_type(data):
     '''
     highest_stage = dict()
 
+    for pokemon in data:
+        current_type = pokemon['type']
+        current_stage = pokemon['stage']
+
+        # First condition being false guarantees that second condition can
+        # be tested!
+        if (current_type not in highest_stage.keys()) or \
+           (current_stage > highest_stage[current_type]):
+
+            # Higher, or didn't previously exist
+            highest_stage[current_type] = current_stage
+
     return highest_stage
 
 
@@ -124,5 +136,21 @@ def mean_attack_per_type(data):
     type.
     '''
     mean_attack = dict()
+
+    for pokemon in data:
+        current_type = pokemon['type']
+        current_attack = pokemon['atk']
+
+        if current_type in mean_attack.keys():
+            # append this attack to the list
+            mean_attack[current_type].append(current_attack)
+        else:
+            # This type doesn't exist yet, create new list
+            mean_attack[current_type] = [current_attack]
+
+    for p_type in mean_attack.keys():
+        # Convert each list into a mean
+        attack_list = mean_attack[p_type]
+        mean_attack[p_type] = sum(attack_list) / len(attack_list)
 
     return mean_attack
