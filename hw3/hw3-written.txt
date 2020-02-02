@@ -1,6 +1,17 @@
-1. a)
-   b)
+1. a) I do think it's an effective visualization. It indicates that there isn't
+        much difference between genders when it comes to high school
+        completion, which is how I understood the intent of the graph to be.
+   
+   b) I chose a line plot with the colors distinguishing degree type. This is
+        because the point is to see trends over time of numbers, which line plots
+        are good for in terms of visualizing changes of value over some other number.
+        I chose color to distinguish degree because their are only two degrees, so
+        color is a perfectly acceptable method of encoding.
 
-2.
+2. This data set ignores economic class which could be interesting to see as
+    that my show something interesting about what the degree completed was based on
+    financial situation.
 
-3.
+3. This data set is very small, so depending on the data that was used to test the
+    model the mean squared error was over 10% different from test to test. Claiming
+    any confidence in the accuracy of this model would be highly disingenuous.
