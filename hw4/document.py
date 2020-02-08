@@ -1,5 +1,5 @@
 # Name: Adam Klingler
-# Section: AC
+# Section: AB
 # Description: This file contains the Document class, which represents all the
 #   words and word frequency in a document.
 
@@ -68,3 +68,12 @@ class Document:
         Returns a string of the file name of the document being represented.
         '''
         return self._file_name
+
+    def __eq__(self, other):
+        '''
+        Defines an ability to compare documents for equality
+        '''
+        is_same_name = self._file_name == other._file_name
+        is_same_terms = self._terms == other._terms
+
+        return is_same_name and is_same_terms
